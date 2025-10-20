@@ -1,5 +1,7 @@
 import { Button } from "@/components/Button"
+import { Filter } from "@/components/Filter"
 import { Input } from "@/components/Input"
+import { FilterStatus } from "@/types/FilterStatus"
 import { Image, View } from "react-native"
 import { styles } from "./styles"
 
@@ -14,7 +16,8 @@ export function Home() {
       </View>
 
       <View style={styles.content}>
-
+        <Filter status={FilterStatus.DONE} isActive />
+        <Filter status={FilterStatus.PENDING} isActive={false} />
       </View>
     </View>
   )
