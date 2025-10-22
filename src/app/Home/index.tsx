@@ -1,6 +1,7 @@
 import { Button } from "@/components/Button"
 import { Filter } from "@/components/Filter"
 import { Input } from "@/components/Input"
+import { Item } from "@/components/Item"
 import { FilterStatus } from "@/types/FilterStatus"
 import { Image, Text, TouchableOpacity, View } from "react-native"
 import { styles } from "./styles"
@@ -20,17 +21,19 @@ export function Home() {
       <View style={styles.content}>
         <View style={styles.header}>
           {FILTER_STATUS.map((status) => (
-            <Filter
-              key={status}
-              status={status}
-              isActive
-            />
+            <Filter key={status} status={status} isActive />
           ))}
 
           <TouchableOpacity style={styles.clearButton}>
             <Text style={styles.clearText}>Limpar</Text>
           </TouchableOpacity>
         </View>
+
+        <Item
+          data={{ status: FilterStatus.DONE, description: "Café" }}
+          onStatus={() => console.log("Mudar o status")}
+          onRemove={() => console.log("Remover")}
+        />
       </View>
     </View>
   )
