@@ -7,7 +7,11 @@ import { FlatList, Image, Text, TouchableOpacity, View } from "react-native"
 import { styles } from "./styles"
 
 const FILTER_STATUS: FilterStatus[] = [FilterStatus.PENDING, FilterStatus.DONE]
-const ITEMS = Array.from({ length: 100 }).map((_, index) => String(index))
+const ITEMS = [
+  { id: "1", status: FilterStatus.DONE, description: "Arroz" },
+  { id: "2", status: FilterStatus.PENDING, description: "Feijão" },
+  { id: "3", status: FilterStatus.DONE, description: "Carne" },
+]
 
 export function Home() {
   return (
@@ -32,14 +36,18 @@ export function Home() {
 
         <FlatList
           data={ITEMS}
-          keyExtractor={(item) => item}
+          keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
             <Item
-              data={{ status: FilterStatus.DONE, description: item }}
+              data={item}
               onStatus={() => console.log("Mudar o status")}
               onRemove={() => console.log("Remover")}
             />
           )}
+          showsVerticalScrollIndicator={false}
+          ItemSeparatorComponent={() => <View style={styles.separator} />}
+          contentContainerStyle={styles.listContent}
+          ListEmptyComponent={() => <Text style={styles.emptyText}>Nenhum item encontrado.</Text>}
         />
       </View>
     </View>

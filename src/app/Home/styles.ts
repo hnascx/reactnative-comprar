@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     backgroundColor: "#D0D2D8",
-    paddingTop: 62,
+    paddingTop: 96,
   },
   logo: {
     height: 34,
@@ -42,5 +42,20 @@ export const styles = StyleSheet.create({
     fontSize: 12,
     color: "#828282",
     fontWeight: "600",
+  },
+  separator: {
+    width: "100%",
+    height: 1,
+    backgroundColor: "#EEF0F5",
+    marginVertical: 16,
+  },
+  listContent: {
+    paddingTop: 18,
+    paddingBottom: 62,
+  },
+  emptyText: {
+    fontSize: 14,
+    color: "#808080",
+    textAlign: "center",
   },
 })
