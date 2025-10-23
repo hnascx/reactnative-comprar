@@ -3,10 +3,11 @@ import { Filter } from "@/components/Filter"
 import { Input } from "@/components/Input"
 import { Item } from "@/components/Item"
 import { FilterStatus } from "@/types/FilterStatus"
-import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native"
+import { FlatList, Image, Text, TouchableOpacity, View } from "react-native"
 import { styles } from "./styles"
 
 const FILTER_STATUS: FilterStatus[] = [FilterStatus.PENDING, FilterStatus.DONE]
+const ITEMS = Array.from({ length: 100 }).map((_, index) => String(index))
 
 export function Home() {
   return (
@@ -29,16 +30,17 @@ export function Home() {
           </TouchableOpacity>
         </View>
 
-        <ScrollView>
-          {Array.from({ length: 100 }).map((_, index) => (
+        <FlatList
+          data={ITEMS}
+          keyExtractor={(item) => item}
+          renderItem={({ item }) => (
             <Item
-              key={index}
-              data={{ status: FilterStatus.DONE, description: "Café" }}
+              data={{ status: FilterStatus.DONE, description: item }}
               onStatus={() => console.log("Mudar o status")}
               onRemove={() => console.log("Remover")}
             />
-          ))}
-        </ScrollView>
+          )}
+        />
       </View>
     </View>
   )
